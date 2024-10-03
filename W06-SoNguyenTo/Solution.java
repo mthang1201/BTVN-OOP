@@ -1,4 +1,10 @@
 public class Solution {
+    /**
+     * IsPrime.
+     *
+     * @param n the unchecked number.
+     * @return whether prime or not.
+     */
     public static boolean isPrime(int n) {
         if (n < 2) {
             return false;
