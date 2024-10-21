@@ -10,6 +10,7 @@ public class Rectangle extends Shape {
      * Constructor1.
      */
     public Rectangle() {
+        super();
         width = 0;
         length = 0;
     }
@@ -57,6 +58,7 @@ public class Rectangle extends Shape {
     }
     
     /**
+     * getArea.
      *
      * @return area.
      */
@@ -66,6 +68,7 @@ public class Rectangle extends Shape {
     }
 
     /**
+     * getPerimeter.
      *
      * @return perimeter.
      */
@@ -74,8 +77,21 @@ public class Rectangle extends Shape {
         return 2 * (width + length);
     }
 
+    /**
+     * toString.
+     *
+     * @return toString.
+     */
     @Override
     public String toString() {
-        return "-   Rectangle[width=" + width + ",length=" + length + ",color=" + color + ",filled=" + filled + "]";
+        return "Rectangle[width="
+                + String.format("%.1f", width)
+                + ",length="
+                + String.format("%.1f", length)
+                + ",color="
+                + color
+                + ",filled="
+                + filled
+                + "]";
     }
 }

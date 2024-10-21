@@ -1,10 +1,13 @@
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Layer.
  */
 public class Layer {
-    private ArrayList<Shape> shapes;
+    private List<Shape> shapes;
 
     /**
      * Constructor.
@@ -14,6 +17,7 @@ public class Layer {
     }
 
     /**
+     * addShape.
      *
      * @param shape of the layer.
      */
@@ -21,15 +25,20 @@ public class Layer {
         shapes.add(shape);
     }
 
+    /**
+     * removeCircles.
+     */
     public void removeCircles() {
-        for (Shape shape : shapes) {
-            if (shape instanceof Circle) {
-                shapes.remove(shape);
+        int size = shapes.size();
+        for (int i = size - 1; i >= 0; i--) {
+            if (shapes.get(i) instanceof Circle) {
+                shapes.remove(i);
             }
         }
     }
 
     /**
+     * getInfo.
      *
      * @return getInfo.
      */
@@ -45,15 +54,11 @@ public class Layer {
     }
 
     /**
-     *
+     * removeDuplicates.
      */
     public void removeDuplicates() {
-        for (int i = 0; i < shapes.size(); i++) {
-            for (int j = i + 1; j < shapes.size(); j++) {
-                if (shapes.get(i).equals(shapes.get(j))) {
-                    shapes.remove(j);
-                }
-            }
-        }
+        Set<Shape> uniqueShapes = new HashSet<>(shapes);
+        shapes.clear();
+        shapes.addAll(uniqueShapes);
     }
 }

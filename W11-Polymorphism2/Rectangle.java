@@ -12,8 +12,10 @@ public class Rectangle extends Shape {
      * Constructor1.
      */
     public Rectangle() {
-        width = 0;
-        length = 0;
+        super();
+        this.topLeft = new Point();
+        this.width = 0;
+        this.length = 0;
     }
 
     /**
@@ -23,6 +25,8 @@ public class Rectangle extends Shape {
      * @param length of the rectangle.
      */
     public Rectangle(double width, double length) {
+        super();
+        this.topLeft = new Point();
         this.width = width;
         this.length = length;
     }
@@ -36,6 +40,7 @@ public class Rectangle extends Shape {
      * @param filled of the rectangle.
      */
     public Rectangle(double width, double length, String color, boolean filled) {
+        this.topLeft = new Point();
         this.width = width;
         this.length = length;
         this.color = color;
@@ -84,6 +89,7 @@ public class Rectangle extends Shape {
     }
     
     /**
+     * getArea.
      *
      * @return area.
      */
@@ -93,6 +99,7 @@ public class Rectangle extends Shape {
     }
 
     /**
+     * getPerimeter.
      *
      * @return perimeter.
      */
@@ -102,6 +109,7 @@ public class Rectangle extends Shape {
     }
 
     /**
+     * equals.
      *
      * @param o compare to another object.
      * @return whether equals.
@@ -116,10 +124,15 @@ public class Rectangle extends Shape {
         }
 
         Rectangle r = (Rectangle) o;
-        return true;
+        return topLeft.equals(r.topLeft)
+                && width == r.width
+                && length == r.length
+                && color.equals(r.color)
+                && filled == r.filled;
     }
 
     /**
+     * hashCode.
      *
      * @return hashCode.
      */
@@ -128,11 +141,22 @@ public class Rectangle extends Shape {
     }
 
     /**
+     * toString.
      *
      * @return toString.
      */
     @Override
     public String toString() {
-        return "-Rectangle[topLeft=" + topLeft.toString() + ",width=" + String.format("%.1f", width) + ",length=" + String.format("%.1f", length) + ",color=" + color + ",filled=" + filled + "]";
+        return "Rectangle[topLeft="
+                + topLeft.toString()
+                + ",width="
+                + String.format("%.1f", width)
+                + ",length="
+                + String.format("%.1f", length)
+                + ",color="
+                + color
+                + ",filled="
+                + filled
+                + "]";
     }
 }

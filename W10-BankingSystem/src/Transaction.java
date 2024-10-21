@@ -29,6 +29,7 @@ public class Transaction {
     }
 
     /**
+     * getTransactionTypeString.
      *
      * @return transaction type in string format.
      */
@@ -42,18 +43,27 @@ public class Transaction {
                 return "Nạp tiền tiết kiệm";
             case TYPE_WITHDRAW_SAVINGS:
                 return "Rút tiền tiết kiệm";
+            default:
+                break;
+
         }
         return "";
     }
 
     /**
+     * getTransactionSummary.
      *
      * @return transaction summary.
      */
     public String getTransactionSummary() {
-        return "- Kiểu giao dịch: " + getTransactionTypeString() +
-               ". Số dư ban đầu: $" + String.format("%.2f", initialBalance) +
-               ". Số tiền: $" + String.format("%.2f", amount) +
-               ". Số dư cuối: $" + String.format("%.2f", finalBalance) +".";
+        return "- Kiểu giao dịch: "
+                + getTransactionTypeString()
+                + ". Số dư ban đầu: $"
+                + String.format("%.2f", initialBalance)
+                + ". Số tiền: $"
+                + String.format("%.2f", amount)
+                + ". Số dư cuối: $"
+                + String.format("%.2f", finalBalance)
+                + ".";
     }
 }

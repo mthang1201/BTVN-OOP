@@ -5,7 +5,9 @@ public class Square extends Rectangle {
     /**
      * Constructor1.
      */
-    public Square() {}
+    public Square() {
+        super();
+    }
 
     /**
      * Constructor2.
@@ -15,6 +17,7 @@ public class Square extends Rectangle {
     public Square(double side) {
         this.width = side;
         this.length = side;
+        this.color = null;
     }
 
     /**
@@ -52,8 +55,19 @@ public class Square extends Rectangle {
         this.length = length;
     }
 
+    /**
+     * toString.
+     *
+     * @return toString.
+     */
     @Override
     public String toString() {
-        return "-   Square[side=" + width + ",color=" + color + ",filled=" + filled + "]";
+        return "Square[side="
+                + String.format("%.1f", width)
+                + ",color="
+                + color
+                + ",filled="
+                + filled
+                + "]";
     }
 }

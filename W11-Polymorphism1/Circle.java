@@ -1,5 +1,3 @@
-import java.awt.*;
-
 /**
  * Circle.
  */
@@ -44,6 +42,7 @@ public class Circle extends Shape {
     }
 
     /**
+     * getArea.
      *
      * @return area.
      */
@@ -53,6 +52,7 @@ public class Circle extends Shape {
     }
 
     /**
+     * getPerimeter.
      *
      * @return perimeter.
      */
@@ -61,8 +61,19 @@ public class Circle extends Shape {
         return 2 * Math.PI * radius;
     }
 
+    /**
+     * toString.
+     *
+     * @return toString.
+     */
     @Override
     public String toString() {
-        return "-   Circle[radius=" + radius + ",color=" + color + ",filled=" + filled + "]";
+        return "Circle[radius="
+                + String.format("%.1f", radius)
+                + ",color="
+                + color
+                + ",filled="
+                + filled
+                + "]";
     }
 }

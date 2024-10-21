@@ -10,7 +10,7 @@ public abstract class Shape {
      * Constructor1.
      */
     public Shape() {
-        this.color = "";
+        this.color = null;
         this.filled = false;
     }
 
@@ -45,7 +45,17 @@ public abstract class Shape {
 
     public abstract double getPerimeter();
 
+    /**
+     * toString.
+     *
+     * @return toString.
+     */
+    @Override
     public String toString() {
-        return "-   Shape[color=" + color + ",filled=" + filled + "]";
+        return "Shape[color="
+                + color
+                + ",filled="
+                + filled
+                + "]";
     }
 }

@@ -10,26 +10,52 @@ public class CheckingAccount extends Account {
     }
 
     /**
+     * withdraw.
      *
      * @param amount of the account.
      */
     public void withdraw(double amount) {
+        double initialBalance = getBalance();
+
         try {
             doWithdrawing(amount);
-        } catch (Exception e) {
+        } catch (InsufficientFundsException | InvalidFundingAmountException e) {
             System.out.println(e.getMessage());
+            return;
         }
+
+        double finalBalance = this.getBalance();
+
+        this.transactionList.add(new Transaction(
+                Transaction.TYPE_WITHDRAW_CHECKING,
+                amount,
+                initialBalance,
+                finalBalance
+        ));
     }
 
     /**
+     * deposit.
      *
      * @param amount of the account.
      */
     public void deposit(double amount) {
+        double initialBalance = getBalance();
+
         try {
             doDepositing(amount);
-        } catch (Exception e) {
+        } catch (InvalidFundingAmountException e) {
             System.out.println(e.getMessage());
+            return;
         }
+
+        double finalBalance = this.getBalance();
+
+        this.transactionList.add(new Transaction(
+                Transaction.TYPE_DEPOSIT_CHECKING,
+                amount,
+                initialBalance,
+                finalBalance
+        ));
     }
 }

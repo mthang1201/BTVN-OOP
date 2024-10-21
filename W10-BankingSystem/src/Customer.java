@@ -34,6 +34,7 @@ public class Customer {
     }
 
     /**
+     * addAccount.
      *
      * @param account of the customer.
      */
@@ -44,6 +45,7 @@ public class Customer {
     }
 
     /**
+     * removeAccount.
      *
      * @param account of the customer.
      */

@@ -10,6 +10,8 @@ public class Circle extends Shape {
      * Constructor1.
      */
     public Circle() {
+        super();
+        this.center = new Point();
         this.radius = 0.0;
     }
 
@@ -19,6 +21,8 @@ public class Circle extends Shape {
      * @param radius of the circle.
      */
     public Circle(double radius) {
+        super();
+        this.center = new Point();
         this.radius = radius;
     }
 
@@ -30,6 +34,7 @@ public class Circle extends Shape {
      * @param filled of the circle.
      */
     public Circle(double radius, String color, boolean filled) {
+        this.center = new Point();
         this.radius = radius;
         this.color = color;
         this.filled = filled;
@@ -67,6 +72,7 @@ public class Circle extends Shape {
     }
 
     /**
+     * getArea.
      *
      * @return area.
      */
@@ -76,6 +82,7 @@ public class Circle extends Shape {
     }
 
     /**
+     * getPerimeter.
      *
      * @return perimeter.
      */
@@ -85,15 +92,22 @@ public class Circle extends Shape {
     }
 
     /**
+     * toString.
      *
      * @return toString.
      */
     @Override
     public String toString() {
-        return "-Circle[center=" + center.toString() + "radius=" + String.format("%.1f", radius) + ",color=" + color + ",filled=" + filled + "]";
+        return "Circle[center="
+                + center.toString()
+                + ",radius="
+                + String.format("%.1f", radius)
+                + ",color=" + color + ",filled="
+                + filled + "]";
     }
 
     /**
+     * equals.
      *
      * @param o compare to another object.
      * @return whether equals.
@@ -108,10 +122,14 @@ public class Circle extends Shape {
         }
 
         Circle c = (Circle) o;
-        return radius == c.radius && color.equals(c.color) && filled == c.filled;
+        return center.equals(c.center)
+                && radius == c.radius
+                && color.equals(c.color)
+                && filled == c.filled;
     }
 
     /**
+     * hashCode.
      *
      * @return hashCode.
      */

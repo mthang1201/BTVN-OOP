@@ -14,7 +14,7 @@ public abstract class Account {
 
     private double balance;
 
-    private List<Transaction> transactionList;
+    protected List<Transaction> transactionList;
 
     /**
      * Constructor1.
@@ -43,29 +43,35 @@ public abstract class Account {
     }
 
     /**
+     * doWithdrawing.
      *
      * @param amount of the account.
-     * @throws BankException error.
+     * @throws InsufficientFundsException error.
+     * @throws InvalidFundingAmountException error.
      */
-    public void doWithdrawing(double amount) throws BankException {
+    public void doWithdrawing(double amount) throws InsufficientFundsException,
+            InvalidFundingAmountException {
         if (amount <= 0) {
             throw new InvalidFundingAmountException(amount);
         }
         if (amount > this.balance) {
             throw new InsufficientFundsException(amount);
         }
+
         this.balance -= amount;
     }
 
     /**
+     * doDepositing.
      *
      * @param amount of the account.
-     * @throws BankException error.
+     * @throws InvalidFundingAmountException error.
      */
-    public void doDepositing(double amount) throws BankException {
+    public void doDepositing(double amount) throws InvalidFundingAmountException {
         if (amount <= 0) {
             throw new InvalidFundingAmountException(amount);
         }
+
         this.balance += amount;
     }
 
@@ -74,6 +80,7 @@ public abstract class Account {
     public abstract void deposit(double amount);
 
     /**
+     * getTransactionHistory.
      *
      * @return transaction history.
      */
@@ -81,12 +88,13 @@ public abstract class Account {
         StringBuilder builder = new StringBuilder();
         builder.append("Lịch sử giao dịch của tài khoản ").append(accountNumber).append(":");
         for (Transaction transaction : transactionList) {
-            builder.append(transaction.getTransactionSummary());
+            builder.append("\n").append(transaction.getTransactionSummary());
         }
         return builder.toString();
     }
 
     /**
+     * addTransaction.
      *
      * @param transaction of the account.
      */
@@ -97,6 +105,7 @@ public abstract class Account {
     }
 
     /**
+     * equals.
      *
      * @param obj other.
      * @return whether it's equal.

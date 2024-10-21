@@ -1,4 +1,7 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -14,14 +17,10 @@ public class Bank {
      */
     public Bank() {
         customerList = new ArrayList<>();
-        try (InputStream inputStream = new FileInputStream("src/customers.txt")) {
-            readCustomerList(inputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     /**
+     * readCustomerList.
      *
      * @param inputStream input.
      */
@@ -31,7 +30,9 @@ public class Bank {
             Customer currentCustomer = null;
 
             while ((line = reader.readLine()) != null) {
-                if (!line.trim().isEmpty() && !line.contains("CHECKING") && !line.contains("SAVINGS")) {
+                if (!line.trim().isEmpty()
+                        && !line.contains("CHECKING")
+                        && !line.contains("SAVINGS")) {
                     String[] parts = line.split(" ");
 
                     String fullName = parts[0] + " " + parts[1] + " " + parts[2];
@@ -65,6 +66,7 @@ public class Bank {
     }
 
     /**
+     * getCustomersInfoByNameOrder.
      *
      * @return customer list in name order.
      */
@@ -82,6 +84,7 @@ public class Bank {
     }
 
     /**
+     * getCustomersInfoByIdOrder.
      *
      * @return customer list in id order
      */
@@ -99,6 +102,7 @@ public class Bank {
     }
 
     /**
+     * getCustomerList.
      *
      * @return customer list
      */
