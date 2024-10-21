@@ -5,24 +5,26 @@ public class Cylinder extends Circle {
     private double height;
 
     /**
-     *
+     * Constructor1.
      */
     public Cylinder() {
         super();
     }
 
     /**
+     * Constructor2.
      *
-     * @param height
+     * @param height Cylinder.
      */
     public Cylinder(double height) {
         this.height = height;
     }
 
     /**
+     * Constructor3.
      *
-     * @param radius
-     * @param height
+     * @param radius Cylinder.
+     * @param height Cylinder.
      */
     public Cylinder(double radius, double height) {
         super(radius);
@@ -30,10 +32,11 @@ public class Cylinder extends Circle {
     }
 
     /**
+     * Constructor4.
      *
-     * @param radius
-     * @param height
-     * @param color
+     * @param radius Cylinder.
+     * @param height Cylinder.
+     * @param color Cylinder.
      */
     public Cylinder(double radius, double height, String color) {
         super(radius, color);
@@ -49,24 +52,27 @@ public class Cylinder extends Circle {
     }
 
     /**
+     * getVolume.
      *
-     * @return
+     * @return getVolume.
      */
     public double getVolume() {
         return super.getArea() * height;
     }
 
     /**
+     * toString.
      *
-     * @return
+     * @return toString.
      */
     public String toString() {
         return "Cylinder[" + super.toString() + "],height=" + height + "]";
     }
 
     /**
+     * getArea.
      *
-     * @return
+     * @return getArea.
      */
     @Override
     public double getArea() {
