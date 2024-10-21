@@ -7,9 +7,10 @@ public class Person {
     private String address;
 
     /**
+     * Constructor.
      *
-     * @param name
-     * @param address
+     * @param name Person.
+     * @param address Person.
      */
     public Person(String name, String address) {
         this.name = name;
@@ -33,14 +34,17 @@ public class Person {
     }
 
     /**
+     * toString.
      *
-     * @return
+     * @return toString.
      */
     @Override
     public String toString() {
-        return "Person{" +
-                "name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                '}';
+        return "Person["
+                + "name="
+                + name
+                + ",address="
+                + address
+                + ']';
     }
 }
