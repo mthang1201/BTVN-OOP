@@ -9,12 +9,13 @@ public class Student extends Person {
     private double fee;
 
     /**
+     * Constructor.
      *
-     * @param name
-     * @param address
-     * @param program
-     * @param year
-     * @param fee
+     * @param name Student.
+     * @param address Student.
+     * @param program Student.
+     * @param year Student.
+     * @param fee Student.
      */
     public Student(String name, String address, String program, int year, double fee) {
         super(name, address);
@@ -48,15 +49,20 @@ public class Student extends Person {
     }
 
     /**
+     * toString.
      *
-     * @return
+     * @return toString.
      */
     @Override
     public String toString() {
-        return "Student{" +
-                "program='" + program + '\'' +
-                ", year=" + year +
-                ", fee=" + fee +
-                '}';
+        return "Student["
+                + super.toString()
+                + ",program="
+                + program
+                + ",year="
+                + year
+                + ",fee="
+                + fee
+                + ']';
     }
 }

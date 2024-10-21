@@ -7,11 +7,12 @@ public class Staff extends Person {
     private double pay;
 
     /**
+     * Constructor.
      *
-     * @param name
-     * @param address
-     * @param school
-     * @param pay
+     * @param name Staff.
+     * @param address Staff.
+     * @param school Staff.
+     * @param pay Staff.
      */
     public Staff(String name, String address, String school, double pay) {
         super(name, address);
@@ -36,14 +37,19 @@ public class Staff extends Person {
     }
 
     /**
+     * toString.
      *
-     * @return
+     * @return toString.
      */
     @Override
     public String toString() {
-        return "Staff{" +
-                "school='" + school + '\'' +
-                ", pay=" + pay +
-                '}';
+        return "Staff["
+                + super.toString()
+                + ",school="
+                + school
+                + ",pay="
+                + pay
+                + ']';
     }
 }
+ 

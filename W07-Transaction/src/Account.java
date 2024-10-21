@@ -1,19 +1,23 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class Account {
     private double balance;
 
-    private List<Transaction> transactions;
+    private ArrayList<Transaction> transitionList;
 
     /**
      * Constructor.
      */
     public Account() {
         this.balance = 0;
-        this.transactions = new ArrayList<>();
+        this.transitionList = new ArrayList<>();
     }
 
+    /**
+     * deposit.
+     *
+     * @param amount account.
+     */
     private void deposit(double amount) {
         if (amount <= 0) {
             System.out.println("So tien ban nap vao khong hop le!");
@@ -22,6 +26,11 @@ public class Account {
         }
     }
 
+    /**
+     * withdraw.
+     *
+     * @param amount account.
+     */
     private void withdraw(double amount) {
         if (amount <= 0) {
             System.out.println("So tien ban rut ra khong hop le!");
@@ -49,40 +58,34 @@ public class Account {
 
         Transaction newTransaction = new Transaction(operation, amount, this.balance);
 
-        transactions.add(newTransaction);
+        transitionList.add(newTransaction);
     }
 
     /**
      * Print list of transactions.
      */
     public void printTransaction() {
-        for (int i = 0; i < transactions.size(); i++) {
-            Transaction currentTransaction = transactions.get(i);
-            String currentOperation = currentTransaction.getOperation();
-            double currentAmount = currentTransaction.getAmount();
-            double currentBalance = currentTransaction.getBalance();
-
+        for (int i = 0; i < transitionList.size(); i++) {
             System.out.print("Giao dich " + (i + 1) + ": ");
+
+            Transaction currentTransaction = transitionList.get(i);
+
+            String currentOperation = currentTransaction.getOperation();
             if (currentOperation.equals(Transaction.DEPOSIT)) {
                 System.out.print("Nap tien ");
             } else if (currentOperation.equals(Transaction.WITHDRAW)) {
                 System.out.print("Rut tien ");
             }
+
+            double currentAmount = currentTransaction.getAmount();
             System.out.print("$" + String.format("%.2f", currentAmount) + ". ");
-            System.out.println("So du luc nay: " + String.format("%.2f", currentBalance) + ".");
+
+            System.out.print("So du luc nay: " + "$");
+
+            double currentBalance = currentTransaction.getBalance();
+            System.out.println(String.format("%.2f", currentBalance) + ".");
         }
         System.out.println();
     }
-
-    /**
-     * Main.
-     *
-     * @param args for commandline arguments.
-     */
-    public static void main(String[] args) {
-        Account acc= new Account();
-        acc.addTransaction(2000.255,"deposit");
-        acc.addTransaction(1000,"withdraw");
-        acc.printTransaction();
-    }
 }
+ 
