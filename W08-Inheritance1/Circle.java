@@ -9,24 +9,26 @@ public class Circle {
     protected static final double PI = Math.PI;
 
     /**
-     *
+     * Constructor1.
      */
     public Circle() {
         radius = 0.0;
     }
 
     /**
+     * Constructor2.
      *
-     * @param radius
+     * @param radius Circle.
      */
     public Circle(double radius) {
         this.radius = radius;
     }
 
     /**
+     * Constructor3.
      *
-     * @param radius
-     * @param color
+     * @param radius Circle.
+     * @param color Circle.
      */
     public Circle(double radius, String color) {
         this.radius = radius;
@@ -50,16 +52,18 @@ public class Circle {
     }
 
     /**
+     * getArea.
      *
-     * @return
+     * @return getArea.
      */
     public double getArea() {
         return PI * radius * radius;
     }
 
     /**
+     * toString.
      *
-     * @return
+     * @return toString
      */
     public String toString() {
         return "Circle[radius=" + radius + ",color=" + color + "]";
