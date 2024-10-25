@@ -38,8 +38,6 @@ public class Game {
                         y,
                         piece
                 );
-            } else if (killedPiece.getColor().equals(piece.getColor())) {
-                return;
             } else {
                 newMove = new Move(
                         piece.getCoordinatesX(),
@@ -56,14 +54,8 @@ public class Game {
 
             moveHistory.add(newMove);
 
-            board.removeAt(
-                    piece.getCoordinatesX(),
-                    piece.getCoordinatesY()
-            );
-
             piece.setCoordinatesX(x);
             piece.setCoordinatesY(y);
-            board.addPiece(piece);
         }
     }
 

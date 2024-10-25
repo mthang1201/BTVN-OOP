@@ -62,18 +62,33 @@ public abstract class Piece {
         return color;
     }
 
+    /**
+     * Piece.
+     *
+     * @param coordinatesX Piece.
+     */
     public void setCoordinatesX(int coordinatesX) {
         if (1 <= coordinatesX && coordinatesX <= 8) {
             this.coordinatesX = coordinatesX;
         }
     }
 
+    /**
+     * Piece.
+     *
+     * @param coordinatesY Piece.
+     */
     public void setCoordinatesY(int coordinatesY) {
         if (1 <= coordinatesY && coordinatesY <= 8) {
             this.coordinatesY = coordinatesY;
         }
     }
 
+    /**
+     * Piece.
+     *
+     * @param color Piece.
+     */
     public void setColor(String color) {
         if (color.equals("white") || color.equals("black")) {
             this.color = color;

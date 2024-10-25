@@ -7,6 +7,9 @@ public class Main {
         Rook rook = new Rook(1, 1, "white");
         board.addPiece(rook);
 
+        Rook rook3 = new Rook(1, 1, "black");
+        board.addPiece(rook3);
+
         Rook rook2 = new Rook(7, 7, "black");
         board.addPiece(rook2);
         boolean b = rook2.canMove(board,7, 3);
@@ -18,10 +21,10 @@ public class Main {
 
         // Try moving the Rook to a valid position (1, 4)
         System.out.println("Attempting to move Rook to (1, 4):");
-        game.movePiece(rook, 1, 5);
-        game.movePiece(rook, 3, 5);
-        game.movePiece(rook, 3, 4);
-        game.movePiece(rook, 7, 4);
+        game.movePiece(rook, 1, 4);
+//        game.movePiece(rook, 3, 5);
+//        game.movePiece(rook, 3, 4);
+//        game.movePiece(rook, 7, 4);
         System.out.println(board.getAt(1, 4) != null ? "Move successful!" : "Move failed!");
 
         // Try an invalid move for Rook (like moving diagonally)

@@ -63,7 +63,7 @@ public class Move {
         output.append("-");
         output.append(movedPiece.getSymbol());
 
-        char posX = (char)((int)'a' + endX - 1);
+        char posX = (char) ('a' + endX - 1);
 
         output.append(posX);
         output.append(endY);
