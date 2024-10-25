@@ -7,6 +7,15 @@ public class Point {
     private double pointY;
 
     /**
+     * Point.
+     */
+    public Point() {
+        this.pointX = 0;
+        this.pointY = 0;
+    }
+
+    /**
+     * Point.
      *
      * @param pointX of the point.
      * @param pointY of the point.
@@ -33,15 +42,20 @@ public class Point {
     }
 
     /**
+     * distance.
      *
      * @param newPoint to currentPoint.
      * @return distance.
      */
     public double distance(Point newPoint) {
-        return Math.sqrt(Math.pow(pointX - newPoint.getPointX(), 2) + Math.pow(pointY - newPoint.getPointY(), 2));
+        return Math.sqrt(
+                Math.pow(pointX - newPoint.getPointX(), 2)
+                        + Math.pow(pointY - newPoint.getPointY(), 2)
+        );
     }
 
     /**
+     * equals.
      *
      * @param o compare to another object.
      * @return whether equals.
@@ -60,6 +74,7 @@ public class Point {
     }
 
     /**
+     * hashCode.
      *
      * @return hashCode.
      */
@@ -68,10 +83,16 @@ public class Point {
     }
 
     /**
+     * toString.
      *
      * @return toString.
      */
+    @Override
     public String toString() {
-        return "(" + String.format("%.1f", pointX) + "," + String.format("%.1f", pointY) + ")";
+        return "("
+                + String.format("%.1f", pointX)
+                + ","
+                + String.format("%.1f", pointY)
+                + ")";
     }
 }

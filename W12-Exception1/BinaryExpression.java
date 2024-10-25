@@ -7,9 +7,10 @@ public abstract class BinaryExpression extends Expression {
     protected Expression right;
 
     /**
+     * BinaryExpression.
      *
-     * @param left
-     * @param right
+     * @param left BinaryExpression.
+     * @param right BinaryExpression.
      */
     public BinaryExpression(Expression left, Expression right) {
         this.left = left;

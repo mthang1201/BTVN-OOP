@@ -103,6 +103,11 @@ public class RandomGenerator {
         return String.format("#%02X%02X%02X", r, g, b);
     }
 
+    /**
+     * isFilled.
+     *
+     * @return isFilled.
+     */
     public boolean isFilled() {
         return random.nextBoolean();
     }

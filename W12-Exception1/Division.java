@@ -1,26 +1,33 @@
 /**
- *
+ * Division.
  */
 public class Division extends BinaryExpression {
     /**
+     * Division.
      *
-     * @param left
-     * @param right
+     * @param left Division.
+     * @param right Division.
      */
     public Division(Expression left, Expression right) {
         super(left, right);
     }
 
     /**
+     * Division.
      *
      * @return toString.
      */
     @Override
     public String toString() {
-        return "(" + left.toString() + " / " + right.toString() + ")";
+        return "("
+                + left.toString()
+                + " / "
+                + right.toString()
+                + ")";
     }
 
     /**
+     * Division.
      *
      * @return evaluate.
      */

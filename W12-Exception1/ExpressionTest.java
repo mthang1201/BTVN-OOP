@@ -2,6 +2,11 @@
  * ExpressionTest.
  */
 public class ExpressionTest {
+    /**
+     * ExpressionTest.
+     *
+     * @param args ExpressionTest.
+     */
     public static void main(String[] args) {
         Expression expression = new Square(
                 new Addition(
@@ -14,6 +19,7 @@ public class ExpressionTest {
                         )
                 )
         );
+
         System.out.println(expression.toString());
         System.out.println(expression.evaluate());
     }

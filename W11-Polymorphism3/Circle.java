@@ -1,4 +1,5 @@
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Color;
 
 /**
  * Circle.
@@ -12,6 +13,8 @@ public class Circle extends Shape {
      * Constructor1.
      */
     public Circle() {
+        super();
+        this.center = new Point();
         this.radius = 0.0;
     }
 
@@ -21,6 +24,8 @@ public class Circle extends Shape {
      * @param radius of the circle.
      */
     public Circle(double radius) {
+        super();
+        this.center = new Point();
         this.radius = radius;
     }
 
@@ -32,6 +37,7 @@ public class Circle extends Shape {
      * @param filled of the circle.
      */
     public Circle(double radius, String color, boolean filled) {
+        this.center = new Point();
         this.radius = radius;
         this.color = color;
         this.filled = filled;
@@ -68,16 +74,23 @@ public class Circle extends Shape {
         this.radius = radius;
     }
 
+    /**
+     * move.
+     */
     @Override
     public void move() {
         double newX = center.getPointX() + velocity.getPointX();
         double newY = center.getPointY() + velocity.getPointY();
 
-        if (collideWall(newX, newY)) {
+        if (newX < 0 || newX >= App.SCREEN_WIDTH - radius) {
             velocity.setPointX(velocity.getPointX() * -1.0);
-            velocity.setPointY(velocity.getPointY() * -1.0);
 
             newX = center.getPointX() + velocity.getPointX();
+        }
+
+        if (newY < 0 || newY >= App.SCREEN_LENGTH - radius) {
+            velocity.setPointY(velocity.getPointY() * -1.0);
+
             newY = center.getPointY() + velocity.getPointY();
         }
 
@@ -85,15 +98,11 @@ public class Circle extends Shape {
         center.setPointY(newX);
     }
 
-    private boolean collideWall(double x, double y) {
-        // R < X < SCREEN_WIDTH - R
-        // R < Y < SCREEN_LENGTH - R
-        if (x < 0 || x >= App.SCREEN_WIDTH - radius || y < 0 || y >= App.SCREEN_LENGTH - radius) {
-            return true;
-        }
-        return false;
-    }
-
+    /**
+     * draw.
+     *
+     * @param graphics draw.
+     */
     @Override
     public void draw(Graphics graphics) {
         graphics.setColor(Color.decode(color));
@@ -105,6 +114,7 @@ public class Circle extends Shape {
     }
 
     /**
+     * getArea.
      *
      * @return area.
      */
@@ -114,6 +124,7 @@ public class Circle extends Shape {
     }
 
     /**
+     * getPerimeter.
      *
      * @return perimeter.
      */
@@ -123,15 +134,22 @@ public class Circle extends Shape {
     }
 
     /**
+     * toString.
      *
      * @return toString.
      */
     @Override
     public String toString() {
-        return "-Circle[center=" + center.toString() + "radius=" + String.format("%.1f", radius) + ",color=" + color + ",filled=" + filled + "]";
+        return "Circle[center="
+                + center.toString()
+                + ",radius="
+                + String.format("%.1f", radius)
+                + ",color=" + color + ",filled="
+                + filled + "]";
     }
 
     /**
+     * equals.
      *
      * @param o compare to another object.
      * @return whether equals.
@@ -146,10 +164,14 @@ public class Circle extends Shape {
         }
 
         Circle c = (Circle) o;
-        return radius == c.radius && color.equals(c.color) && filled == c.filled;
+        return center.equals(c.center)
+                && radius == c.radius
+                && color.equals(c.color)
+                && filled == c.filled;
     }
 
     /**
+     * hashCode.
      *
      * @return hashCode.
      */

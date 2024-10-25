@@ -5,7 +5,9 @@ public class Square extends Rectangle {
     /**
      * Constructor1.
      */
-    public Square() {}
+    public Square() {
+        super();
+    }
 
     /**
      * Constructor2.
@@ -13,8 +15,7 @@ public class Square extends Rectangle {
      * @param side of the square.
      */
     public Square(double side) {
-        this.width = side;
-        this.length = side;
+        super(side, side);
     }
 
     /**
@@ -69,6 +70,7 @@ public class Square extends Rectangle {
     }
 
     /**
+     * equals.
      *
      * @param o compare to another object.
      * @return whether equals.
@@ -83,23 +85,38 @@ public class Square extends Rectangle {
         }
 
         Square s = (Square) o;
-        return true;
+        return topLeft.equals(s.topLeft)
+                && width == s.width
+                && length == s.length
+                && color.equals(s.color)
+                && filled == s.filled;
     }
 
     /**
+     * hashCode.
      *
      * @return hashCode.
      */
+    @Override
     public int hashCode() {
         return 0;
     }
 
     /**
+     * toString.
      *
      * @return toString.
      */
     @Override
     public String toString() {
-        return "Square[topLeft=" + topLeft.toString() + ",side=" + String.format("%.1f", width) + ",color=" + color + ",filled=" + filled + "]";
+        return "Square[topLeft="
+                + topLeft.toString()
+                + ",side="
+                + String.format("%.1f", width)
+                + ",color="
+                + color
+                + ",filled="
+                + filled
+                + "]";
     }
 }
