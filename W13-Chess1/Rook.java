@@ -52,6 +52,12 @@ public class Rook extends Piece {
             return false;
         }
 
+        Piece pieceAt = board.getAt(x, y);
+        if (pieceAt != null
+                && pieceAt.getColor().equals(getColor())) {
+            return false;
+        }
+
         // vertical (same x, different y).
         if (getCoordinatesX() == x) {
             int minY = Math.min(getCoordinatesY(), y);
