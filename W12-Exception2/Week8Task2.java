@@ -9,120 +9,132 @@ import java.util.Scanner;
  */
 public class Week8Task2 {
     /**
-     *
+     * Week8Task2.
      */
-    public void nullPointerEx() {
+    public void nullPointerEx() throws NullPointerException {
         String str = null;
         System.out.println(str.length());
+        throw new NullPointerException();
     }
 
     /**
-     *
+     * Week8Task2.
      */
-    public void ArrayIndexOutOfBoundsEx() {
+    public void arrayIndexOutOfBoundsEx() throws ArrayIndexOutOfBoundsException {
         int[] arr = {1, 2, 4, 5, 9};
         System.out.println(arr[10]);
+        throw new ArrayIndexOutOfBoundsException();
     }
 
     /**
-     *
+     * Week8Task2.
      */
-    public void ArithmeticEx() {
+    public void arithmeticEx() throws ArithmeticException {
         int a = 3;
         int b = 0;
         int c = a / b;
     }
 
     /**
+     * Week8Task2.
      *
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException Week8Task2.
      */
     public void fileNotFoundEx() throws FileNotFoundException {
         File file = new File("file.txt");
         Scanner scanner = new Scanner(file);
+        throw new FileNotFoundException();
     }
 
     /**
+     * Week8Task2.
      *
-     * @throws IOException
+     * @throws IOException Week8Task2.
      */
     public void ioEx() throws IOException {
         FileReader reader = new FileReader("file.txt");
+        throw new IOException();
     }
 
     /**
+     * Week8Task2.
      *
-     * @return
+     * @return Week8Task2.
      */
     public String nullPointerExTest() {
         try {
             nullPointerEx();
         } catch (NullPointerException e) {
-            return e.getMessage();
+            return "Lỗi Null Pointer";
         }
 
         return "Không có lỗi";
     }
 
     /**
+     * Week8Task2.
      *
-     * @return
+     * @return Week8Task2.
      */
     public String arrayIndexOutOfBoundsExTest() {
         try {
-            ArrayIndexOutOfBoundsEx();
+            arrayIndexOutOfBoundsEx();
         } catch (ArrayIndexOutOfBoundsException e) {
-            return e.getMessage();
+            return "Lỗi Array Index Out of Bounds";
         }
 
         return "Không có lỗi";
     }
 
     /**
+     * Week8Task2.
      *
-     * @return
+     * @return Week8Task2.
      */
     public String arithmeticExTest() {
         try {
-            ArithmeticEx();
+            arithmeticEx();
         } catch (ArithmeticException e) {
-            return e.getMessage();
+            return "Lỗi Arithmetic";
         }
 
         return "Không có lỗi";
     }
 
     /**
+     * Week8Task2.
      *
-     * @return
+     * @return Week8Task2.
      */
     public String fileNotFoundExTest() {
         try {
             fileNotFoundEx();
         } catch (FileNotFoundException e) {
-            return e.getMessage();
+            return "Lỗi File Not Found";
         }
 
         return "Không có lỗi";
     }
 
     /**
+     * Week8Task2.
      *
-     * @return
+     * @return Week8Task2.
      */
     public String ioExTest() {
         try {
             ioEx();
         } catch (IOException e) {
-            return e.getMessage();
+            return "Lỗi IO";
         }
 
         return "Không có lỗi";
     }
 
     /**
+     * Week8Task2.
      *
-     * @param args
+     * @param args Week8Task2.
      */
     public static void main(String[] args) {
         Week8Task2 task = new Week8Task2();

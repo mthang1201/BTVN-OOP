@@ -1,4 +1,5 @@
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Color;
 
 /**
  * Rectangle.
@@ -14,8 +15,10 @@ public class Rectangle extends Shape {
      * Constructor1.
      */
     public Rectangle() {
-        width = 0;
-        length = 0;
+        super();
+        this.topLeft = new Point();
+        this.width = 0;
+        this.length = 0;
     }
 
     /**
@@ -25,6 +28,8 @@ public class Rectangle extends Shape {
      * @param length of the rectangle.
      */
     public Rectangle(double width, double length) {
+        super();
+        this.topLeft = new Point();
         this.width = width;
         this.length = length;
     }
@@ -38,6 +43,7 @@ public class Rectangle extends Shape {
      * @param filled of the rectangle.
      */
     public Rectangle(double width, double length, String color, boolean filled) {
+        this.topLeft = new Point();
         this.width = width;
         this.length = length;
         this.color = color;
@@ -85,16 +91,23 @@ public class Rectangle extends Shape {
         this.length = length;
     }
 
+    /**
+     * move.
+     */
     @Override
     public void move() {
         double newX = topLeft.getPointX() + velocity.getPointX();
         double newY = topLeft.getPointY() + velocity.getPointY();
 
-        if (collideWall(newX, newY)) {
+        if (newX < 0 || newX >= App.SCREEN_WIDTH - width) {
             velocity.setPointX(velocity.getPointX() * -1.0);
-//            velocity.setPointY(velocity.getPointY() * -1.0);
 
             newX = topLeft.getPointX() + velocity.getPointX();
+        }
+
+        if (newY < 0 || newY >= App.SCREEN_LENGTH - length) {
+            velocity.setPointY(velocity.getPointY() * -1.0);
+
             newY = topLeft.getPointY() + velocity.getPointY();
         }
 
@@ -102,15 +115,11 @@ public class Rectangle extends Shape {
         topLeft.setPointY(newX);
     }
 
-    private boolean collideWall(double x, double y) {
-        // 0 < X < SCREEN_WIDTH - width
-        // 0 < Y < SCREEN_LENGTH - length
-        if (x < 0 || x >= App.SCREEN_WIDTH - width || y < 0 || y >= App.SCREEN_LENGTH - length) {
-            return true;
-        }
-        return false;
-    }
-
+    /**
+     * draw.
+     *
+     * @param graphics draw.
+     */
     @Override
     public void draw(Graphics graphics) {
         graphics.setColor(Color.decode(color));
@@ -122,6 +131,7 @@ public class Rectangle extends Shape {
     }
 
     /**
+     * getArea.
      *
      * @return area.
      */
@@ -131,6 +141,7 @@ public class Rectangle extends Shape {
     }
 
     /**
+     * getPerimeter.
      *
      * @return perimeter.
      */
@@ -140,6 +151,7 @@ public class Rectangle extends Shape {
     }
 
     /**
+     * equals.
      *
      * @param o compare to another object.
      * @return whether equals.
@@ -154,10 +166,15 @@ public class Rectangle extends Shape {
         }
 
         Rectangle r = (Rectangle) o;
-        return true;
+        return topLeft.equals(r.topLeft)
+                && width == r.width
+                && length == r.length
+                && color.equals(r.color)
+                && filled == r.filled;
     }
 
     /**
+     * hashCode.
      *
      * @return hashCode.
      */
@@ -166,11 +183,22 @@ public class Rectangle extends Shape {
     }
 
     /**
+     * toString.
      *
      * @return toString.
      */
     @Override
     public String toString() {
-        return "-Rectangle[topLeft=" + topLeft.toString() + ",width=" + String.format("%.1f", width) + ",length=" + String.format("%.1f", length) + ",color=" + color + ",filled=" + filled + "]";
+        return "Rectangle[topLeft="
+                + topLeft.toString()
+                + ",width="
+                + String.format("%.1f", width)
+                + ",length="
+                + String.format("%.1f", length)
+                + ",color="
+                + color
+                + ",filled="
+                + filled
+                + "]";
     }
 }

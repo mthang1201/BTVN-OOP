@@ -3,12 +3,14 @@
  */
 public abstract class Expression {
     /**
+     * Expression.
      *
      * @return toString.
      */
     public abstract String toString();
 
     /**
+     * Expression.
      *
      * @return evaluate.
      */

@@ -9,8 +9,8 @@ public class App extends JFrame {
 
     private Timer timer;
 
-    public static final int SCREEN_WIDTH = 400;
-    public static final int SCREEN_LENGTH = 300;
+    public static final int SCREEN_WIDTH = 800;
+    public static final int SCREEN_LENGTH = 600;
     private static final int TIMER_DELAY = 16;
 
     public App() {
@@ -46,7 +46,7 @@ public class App extends JFrame {
 
     private void initUI() {
         setTitle("App");
-        setSize(SCREEN_WIDTH * 2, SCREEN_LENGTH * 2);
+        setSize(SCREEN_WIDTH, SCREEN_LENGTH);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }

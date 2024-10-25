@@ -1,14 +1,29 @@
-public class Person {
+/**
+ * Person.
+ */
+public class Person implements Comparable<Person> {
     protected String name;
 
     protected int age;
 
     protected String address;
 
+    /**
+     * Person.
+     */
     public Person() {
-
+        this.name = "";
+        this.age = 0;
+        this.address = "";
     }
 
+    /**
+     * Person.
+     *
+     * @param name Person.
+     * @param age Person.
+     * @param address Person.
+     */
     public Person(String name, int age, String address) {
         this.name = name;
         this.age = age;
@@ -39,19 +54,20 @@ public class Person {
         this.address = address;
     }
 
+    /**
+     * Person.
+     *
+     * @param p Person.
+     * @return Person.
+     */
+    @Override
     public int compareTo(Person p) {
-        if (this.age < p.age) {
-            return 1;
+        int nameCompare = this.name.compareTo(p.getName());
+
+        if (nameCompare == 0) {
+            return Integer.compare(this.age, p.getAge());
         }
 
-        if (this.age > p.age) {
-            return -1;
-        }
-
-        if (this.age == p.age) {
-            return 0;
-        }
-
-        return 0;
+        return nameCompare;
     }
 }
