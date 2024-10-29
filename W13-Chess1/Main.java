@@ -1,5 +1,18 @@
 public class Main {
     public static void main(String[] args) {
+            Board board = new Board();
+            Piece r1 = new Rook(6,1);
+            Piece r2 = new Rook(6,5, "black");
+            board.addPiece(r1);
+            board.addPiece(r2);
+            Game game = new Game(board);
+            game.movePiece(r1, 6,5);
+            game.movePiece(r1, 6,7);
+            game.movePiece(r1, 1,7);
+            for (int i = 0 ; i < game.getMoveHistory().size() ; i++) {
+                System.out.println(game.getMoveHistory().get(i).toString());
+            }
+            /*
         // Create a new chess board
         Board board = new Board();
 
@@ -43,6 +56,6 @@ public class Main {
         System.out.println("Move History:");
         for (Move move : game.getMoveHistory()) {
             System.out.println(move);
-        }
+        }*/
     }
 }
