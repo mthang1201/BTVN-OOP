@@ -4,9 +4,9 @@
 public class Move {
     private int startX;
 
-    private int startY;
-
     private int endX;
+
+    private int startY;
 
     private int endY;
 
@@ -18,12 +18,12 @@ public class Move {
      * Move.
      *
      * @param startX Move.
-     * @param startY Move.
      * @param endX Move.
+     * @param startY Move.
      * @param endY Move.
      * @param movedPiece Move.
      */
-    public Move(int startX, int startY, int endX, int endY, Piece movedPiece) {
+    public Move(int startX, int endX, int startY, int endY, Piece movedPiece) {
         this.startX = startX;
         this.startY = startY;
         this.endX = endX;
@@ -35,13 +35,13 @@ public class Move {
      * Move.
      *
      * @param startX Move.
-     * @param startY Move.
      * @param endX Move.
+     * @param startY Move.
      * @param endY Move.
      * @param movedPiece Move.
      * @param killedPiece Move.
      */
-    public Move(int startX, int startY, int endX, int endY, Piece movedPiece, Piece killedPiece) {
+    public Move(int startX, int endX, int startY, int endY, Piece movedPiece, Piece killedPiece) {
         this.startX = startX;
         this.startY = startY;
         this.endX = endX;

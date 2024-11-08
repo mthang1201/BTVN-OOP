@@ -33,16 +33,16 @@ public class Game {
             if (killedPiece == null) {
                 newMove = new Move(
                         piece.getCoordinatesX(),
-                        piece.getCoordinatesY(),
                         x,
+                        piece.getCoordinatesY(),
                         y,
                         piece
                 );
             } else {
                 newMove = new Move(
                         piece.getCoordinatesX(),
-                        piece.getCoordinatesY(),
                         x,
+                        piece.getCoordinatesY(),
                         y,
                         piece,
                         killedPiece
