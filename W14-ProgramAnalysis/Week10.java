@@ -10,23 +10,30 @@ import java.util.regex.Pattern;
  */
 public class Week10 {
     private static final Pattern PACKAGE_PATTERN = Pattern.compile(
-            "package\\s+([^;]*)"
+            "^package\\s+(.*);$",
+            Pattern.MULTILINE
     );
 
     private static final Pattern IMPORT_PATTERN = Pattern.compile(
-            "import\\s(?:static\\s)?([^;]*\\.)?([A-z]+)",
+            "^import\\s+(?:static\\s+)?((?:\\w+\\.)+(\\w+));$",
             Pattern.MULTILINE
     );
 
     private static final Pattern CLASS_PATTERN = Pattern.compile(
-            "(?:class|interface|enum)\\s+([A-z]+)",
+            "^(?:\\s{2})*(?:(?:abstract|public|private|protected|static|final)\\s+)*"
+                    + "(class|interface|enum)\\s+([^<\\s]+)([^{]+)?\\s*\\{",
             Pattern.MULTILINE
     );
 
     private static final Pattern STATIC_METHOD_PATTERN = Pattern.compile(
-            "static\\s[A-z<>]+\\s([A-z]+)\\(([^)]*)",
+            "^(?<!\\s{0,20}/\\*\\n)" // Negative lookbehind
+                    + "(?:\\s{2})+(?:(?:public|private|protected)\\s+)*"
+                    + "static\\s+(?:final\\s+)?[\\w<>,.?\\[\\]\\s]+\\s+(\\w+)"
+                    + "\\s*\\(([\\w<>,.?\\[\\]\\s]*)\\)\\s*\\{",
             Pattern.MULTILINE
     );
+
+    private static final Map<String, String> utilsMap = new HashMap<>();
 
     /**
      * comment.
@@ -37,26 +44,23 @@ public class Week10 {
     public static List<String> getAllFunctions(String contentfile) {
         List<String> result = new ArrayList<>();
 
-        Map<String, String> utilsMap = new HashMap<>();
-
         String packageName = "";
 
         Matcher matcher = PACKAGE_PATTERN.matcher(contentfile);
-        while (matcher.find()) {
+        if (matcher.find()) {
             packageName = matcher.group(1);
-            break;
         }
 
         matcher = IMPORT_PATTERN.matcher(contentfile);
         while (matcher.find()) {
             String importPhrase = matcher.group(1);
             String importName = matcher.group(2);
-            utilsMap.put(importName, importPhrase + importName);
+            utilsMap.put(importName, importPhrase);
         }
 
         matcher = CLASS_PATTERN.matcher(contentfile);
         while (matcher.find()) {
-            String className = matcher.group(1);
+            String className = matcher.group(2);
             utilsMap.put(className, packageName + "." + className);
         }
 
@@ -70,16 +74,21 @@ public class Week10 {
 
             func.append(methodName).append("(");
 
-            if (!args.equals("")) {
-                List<String> types = getAllTypes(args, utilsMap);
-                boolean firstRow = true;
-                for (String type : types) {
-                    if (!firstRow) {
-                        func.append(",");
-                    }
-                    func.append(type);
-                    firstRow = false;
+            if (!args.isEmpty()) {
+                args = args.replaceAll("\\.{3}", "");
+                args = args.replace("\n", "").trim();
+
+                String[] types = args.split(", ");
+
+                for (int i = 0; i < types.length; i++) {
+                    types[i] = getAllTypes(types[i].split(" ")[0]);
                 }
+
+                for (String param : types) {
+                    func.append(param).append(",");
+                }
+
+                func.deleteCharAt(func.length() - 1);
             }
 
             func.append(")");
@@ -93,50 +102,26 @@ public class Week10 {
     /**
      * Week10.
      *
-     * @param args Week10.
-     * @param utilsMap Week10.
+     * @param arg Week10.
      * @return Week10.
      */
-    private static List<String> getAllTypes(String args, Map<String, String> utilsMap) {
-        List<String> result = new ArrayList<>();
+    private static String getAllTypes(String arg) {
+        if (utilsMap.containsKey(arg)) {
+            return utilsMap.get(arg);
+        } else if (arg.matches("[A-Z]\\w+")) {
+            return "java.lang." + arg;
+        } else if (arg.contains("<")) {
+            String[] parts = arg.split("<");
+            parts[0] = getAllTypes(parts[0]);
+            parts[1] = getAllTypes(parts[1].replace(">", ""));
 
-        Pattern pattern = Pattern.compile(
-                "([A-z<>.?]+)\\s"
-        );
-
-        Matcher matcher = pattern.matcher(args);
-        while (matcher.find()) {
-            String type = matcher.group(1);
-            if (utilsMap.containsKey(type)) {
-                result.add(
-                        utilsMap.get(type)
-                );
-            } else if (type.matches("[A-Z][A-z.]+")) {
-                if (type.contains("...")) {
-                    type = "Object";
-                }
-                result.add("java.lang." + type);
-            } else if (type.contains("?")) {
-                result.add("java.lang." + type);
-            } else if (type.contains("<")) {
-                String type1 = type.substring(0, type.indexOf("<")) + " ";
-                String type2 = type.substring(type.indexOf("<") + 1);
-                type2 = type2.substring(0, type2.indexOf(">")) + " ";
-
-                type1 = getAllTypes(type1, utilsMap).get(0);
-                type2 = getAllTypes(type2, utilsMap).get(0);
-
-                StringBuilder output = new StringBuilder();
-                output.append(type1);
-                output.append("<");
-                output.append(type2);
-                output.append(">");
-                result.add(output.toString());
-            } else {
-                result.add(type);
-            }
+            return String.format(
+                    "%s<%s>",
+                    parts[0],
+                    parts[1]
+            );
+        } else {
+            return arg;
         }
-
-        return result;
     }
 } 
