@@ -34,10 +34,9 @@ public class Circle extends Shape {
      * @param filled of the circle.
      */
     public Circle(double radius, String color, boolean filled) {
+        super(color, filled);
         this.center = new Point();
         this.radius = radius;
-        this.color = color;
-        this.filled = filled;
     }
 
     /**
@@ -49,10 +48,9 @@ public class Circle extends Shape {
      * @param filled of the circle.
      */
     public Circle(Point center, double radius, String color, boolean filled) {
+        super(color, filled);
         this.center = center;
         this.radius = radius;
-        this.color = color;
-        this.filled = filled;
     }
 
     public Point getCenter() {

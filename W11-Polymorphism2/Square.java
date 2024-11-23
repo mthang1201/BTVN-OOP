@@ -26,10 +26,7 @@ public class Square extends Rectangle {
      * @param filled of the square.
      */
     public Square(double side, String color, boolean filled) {
-        this.width = side;
-        this.length = side;
-        this.color = color;
-        this.filled = filled;
+        super(side, side, color, filled);
     }
 
     /**
@@ -41,11 +38,7 @@ public class Square extends Rectangle {
      * @param filled of the square.
      */
     public Square(Point topLeft, double side, String color, boolean filled) {
-        this.topLeft = topLeft;
-        this.width = side;
-        this.length = side;
-        this.color = color;
-        this.filled = filled;
+        super(topLeft, side, side, color, filled);
     }
 
     public double getSide() {
@@ -58,15 +51,15 @@ public class Square extends Rectangle {
     }
 
     @Override
-    public void setWidth(double width) {
-        this.width = width;
-        this.length = width;
+    public void setWidth(double side) {
+        this.width = side;
+        this.length = side;
     }
 
     @Override
-    public void setLength(double length) {
-        this.width = length;
-        this.length = length;
+    public void setLength(double side) {
+        this.width = side;
+        this.length = side;
     }
 
     /**

@@ -1,7 +1,6 @@
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Layer.
@@ -57,8 +56,7 @@ public class Layer {
      * removeDuplicates.
      */
     public void removeDuplicates() {
-        Set<Shape> uniqueShapes = new HashSet<>(shapes);
-        shapes.clear();
-        shapes.addAll(uniqueShapes);
+        LinkedHashSet<Shape> shapeSet = new LinkedHashSet<>(shapes);
+        this.shapes = new ArrayList<>(shapeSet);
     }
 }

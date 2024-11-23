@@ -40,11 +40,10 @@ public class Rectangle extends Shape {
      * @param filled of the rectangle.
      */
     public Rectangle(double width, double length, String color, boolean filled) {
+        super(color, filled);
         this.topLeft = new Point();
         this.width = width;
         this.length = length;
-        this.color = color;
-        this.filled = filled;
     }
 
     /**
@@ -57,11 +56,10 @@ public class Rectangle extends Shape {
      * @param filled of the rectangle.
      */
     public Rectangle(Point topLeft, double width, double length, String color, boolean filled) {
+        super(color, filled);
         this.topLeft = topLeft;
         this.width = width;
         this.length = length;
-        this.color = color;
-        this.filled = filled;
     }
 
     public Point getTopLeft() {
@@ -116,19 +114,15 @@ public class Rectangle extends Shape {
      */
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Rectangle)) {
-            return false;
+        if (o instanceof Rectangle) {
+            Rectangle another = (Rectangle) o;
+            return Math.abs(this.width - another.getWidth())
+                    <= 0.001
+                    && Math.abs(this.length - another.getLength())
+                    <= 0.001
+                    && this.topLeft.equals(another.getTopLeft());
         }
-        if (o == this) {
-            return true;
-        }
-
-        Rectangle r = (Rectangle) o;
-        return topLeft.equals(r.topLeft)
-                && width == r.width
-                && length == r.length
-                && color.equals(r.color)
-                && filled == r.filled;
+        return false;
     }
 
     /**
